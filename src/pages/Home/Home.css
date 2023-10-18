@@ -1,0 +1,123 @@
+.home-container{
+    overflow:hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    height: fit-content;
+    /* padding-bottom: 20px; */
+}
+
+.center-component{
+    background-image: url("../../../assets/centerImage.png");
+    background-size: cover;
+   background-repeat: no-repeat;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   padding:50px;
+   color:white;
+   height: 100%;
+   width: 100%;
+   overflow:hidden
+}
+
+p{
+    font-family:'Arial';
+    font-size: 10px;
+    letter-spacing:1px;
+}
+
+.mainContainer{    
+  flex: 1;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 300px );
+  grid-auto-rows: auto; 
+  margin-top: 15px;
+  justify-content: center;
+  flex-direction: column;
+  /* gap:10px; */
+  /* max-width: 400px;  */
+  width: auto; 
+  border-radius: 10px;
+  margin:20px;
+ /* grid-area: auto; */
+ /* grid-template-rows: auto; */
+ /* column-gap: 10px; */
+
+  }
+  /* ::-webkit-scrollbar {
+    width: 0px; 
+  } */
+
+.pin {
+    border-radius: 16px;
+    background: rgb(249, 249, 249);
+    margin: 5px;
+    cursor: pointer;
+    position: relative;
+    border: 10px solid red;
+    height: fit-content; 
+    border:1px solid rgba(164, 164, 164, 0.557);
+    border-radius: 10px;
+    box-shadow: 7px 7px 14px rgba(0, 0, 0, 0.1);
+  }
+
+.pin.small {
+    grid-row-end: span 28;
+    grid-auto-flow: row;
+  }
+  .pin.medium {
+    grid-row-end: span 45;
+    grid-auto-flow: column;
+  }
+  .pin.large {
+    grid-row-end: span 52;
+  }
+  .pin.default {
+    grid-row-end: span 52;
+  }
+  
+
+.image-card-container{
+   /* position: relative; */
+   flex: 1;
+   height: auto;
+   display: grid;
+   grid-template-columns: repeat(auto-fill, 300px);
+   grid-auto-rows: 10px;
+   margin-top: 15px;
+   justify-content: center;
+   flex-direction: column;
+   /* max-width: 400px;  */
+   width: auto; 
+   height: auto; 
+   border-radius: 10px;
+   margin:20px;
+}
+
+@media (max-width: 480px){
+  .center-component h1{
+     font-size: 24px;
+     width: 350px;
+     text-align: center;
+     display: flex;
+  }
+
+  .center-component p{
+    /* width: 310px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+ 
+  .center-component{
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    padding: 0px;
+    padding-bottom: 40px;
+  }
+
+}

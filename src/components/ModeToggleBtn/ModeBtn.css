@@ -1,0 +1,15 @@
+.toggle-container{
+    display:flex;
+    gap:5px;
+    align-items: center;
+    margin-left: 40px;
+}
+
+@media (max-width: 480px) {
+    .toggle-container{
+        display:flex;
+        gap:5px;
+        /* align-self: center; */
+        /* margin-left: 70px; */
+    }
+}
