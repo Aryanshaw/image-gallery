@@ -30,7 +30,7 @@ const Modal = ({ onClose, data, modalIndex }) => {
           className="modal-container"
           style={{
             backgroundColor: isDarkMode ? "black" : "white",
-            borderRadius: "15px",
+            borderRadius: "10px",
           }}
         >
           <div className="modal-img-container">
