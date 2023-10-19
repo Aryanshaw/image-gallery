@@ -168,7 +168,7 @@
     align-items: center;
 }
 
-@media (max-width: 680px) {
+@media (max-width: 780px) {
   .modal-img{
     max-width: 370px; 
     max-height: 480px !important; 
