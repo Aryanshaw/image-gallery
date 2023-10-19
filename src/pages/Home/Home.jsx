@@ -10,11 +10,14 @@ import {
   getImageDataError,
   photoDetailsSelector,
   searchTextSelector,
+  getSearchText,
 } from "../../utils/reducers/FetchCollectionSlice";
 import Loader from "../../components/Loader/Loader";
 import axios from "axios";
 import ImageCard from "../../components/ImageCard/ImageCard";
 import Modal from "../../components/Modal/Modal";
+import { tagSelector } from "../../utils/reducers/FetchCollectionSlice";
+import { IoIosArrowBack } from "react-icons/io";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -24,6 +27,7 @@ const Home = () => {
   const [modalData, setModalData] = useState([]);
   const [modalIndex, setModalIndex] = useState("");
   const searchText = useSelector(searchTextSelector);
+  const tags = useSelector(tagSelector);
 
   const fetchImageCollection = async () => {
     dispatch(isLoading(true));
@@ -50,10 +54,6 @@ const Home = () => {
     setIsModalOpen(false);
   };
 
-  const donkey = () => {
-    console.log("you are a doffy");
-  };
-
   return (
     <div className="home-container">
       <Navbar />
@@ -62,15 +62,36 @@ const Home = () => {
           <br />
           <h1>Download high quality images by creators</h1>
           <p>Over 2.4 million+ stock Images by our talented community</p>
-          <SearchInput
-            width="600px"
-            fetchImage={fetchImageCollection}
-            donkey={donkey}
-          />
+          <SearchInput width="600px" fetchImage={fetchImageCollection} />
         </div>
       ) : (
-        <div>
-          <h1>{searchText}</h1>
+        <div className="center-container">
+          <div className="center-container-title">
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+              }}
+            >
+              <IoIosArrowBack
+                onClick={() => dispatch(getSearchText(""))}
+                style={{ cursor: "pointer" }}
+              />
+              <h1>{searchText}</h1>
+            </div>
+            <span></span>
+          </div>
+          <div className="center-container-tags">
+            <div className="modal-tags">
+              {tags[0]?.map((item, index) => (
+                <div key={index} className="tags-container">
+                  <p className="tag">{item?.title}</p>
+                </div>
+              ))}
+              <span></span>
+            </div>
+          </div>
         </div>
       )}
       {loading ? (

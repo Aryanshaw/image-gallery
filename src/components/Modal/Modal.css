@@ -38,6 +38,8 @@
 
   .modal-img-container{
     position: relative;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   .modal-download-btn{
@@ -81,8 +83,8 @@
 
 .modal-img{
     max-width: 900px; 
-    max-height: 450px !important; 
-    width: inherit; 
+    max-height: 480px !important; 
+    width: auto; 
     height: auto; 
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
@@ -159,4 +161,13 @@
     display:flex;
     gap:5px;
     align-items: center;
+}
+
+@media (max-width: 680px) {
+  .modal-img{
+    max-width: 370px; 
+    max-height: 480px !important; 
+    width: auto; 
+    height: auto;
+  }
 }

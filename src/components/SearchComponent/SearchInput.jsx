@@ -5,13 +5,14 @@ import {
   getImageDataError,
   getImageData,
   getSearchText,
+  searchTextSelector,
 } from "../../utils/reducers/FetchCollectionSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineSearch } from "react-icons/ai";
 import { RxCross1 } from "react-icons/rx";
 import "./SearchInput.css";
 
-const SearchInput = ({ width, fetchImage, donkey }) => {
+const SearchInput = ({ width, fetchImage }) => {
   const inputStyle = {
     width: width || "200px",
     alignSelf: "center",
@@ -21,9 +22,12 @@ const SearchInput = ({ width, fetchImage, donkey }) => {
   const [text, setText] = useState("");
   const dispatch = useDispatch();
   const [hitEnter, setHitEnter] = useState("");
+  const [showRecommendations, setShowRecommendations] = useState(false);
+  const searchText = useSelector(searchTextSelector);
 
   const handleSearchInputChange = (event) => {
     setText(event.target.value);
+    setShowRecommendations(true);
   };
 
   const searchImageHandler = async () => {
@@ -40,14 +44,22 @@ const SearchInput = ({ width, fetchImage, donkey }) => {
     dispatch(isLoading(false));
   };
 
+  const handleRecommendationClick = (recommendation) => {
+    setText(recommendation);
+    setShowRecommendations(false);
+  };
+
   useEffect(() => {
-    if (hitEnter === "Enter") searchImageHandler();
-    if (text === "" && fetchImage !== undefined) fetchImage();
+    if (hitEnter === "Enter" && text !=="") {
+      searchImageHandler();
+      setShowRecommendations(false);
+    }
+    if (text === "" && searchText==="" && fetchImage !== undefined) fetchImage();
   }, [text, hitEnter]);
 
   return (
     <div className="search-container">
-      <AiOutlineSearch />
+      <AiOutlineSearch className="icon" color="black" />
       <input
         type="text"
         placeholder="Search..."
@@ -57,7 +69,21 @@ const SearchInput = ({ width, fetchImage, donkey }) => {
         onKeyDown={(e) => setHitEnter(e.key)}
       />
       {text && (
-        <RxCross1 style={{ cursor: "pointer" }} onClick={() => setText("")} />
+        <RxCross1
+          style={{ cursor: "pointer" }}
+          color="black"
+          className="icon"
+          onClick={() => {
+            if(searchText !=="") setText("");
+          }}
+        />
+      )}
+      {showRecommendations && text && (
+        <div className="recommendations">
+          <div onClick={() => handleRecommendationClick("animal")}>Animal</div>
+          <div onClick={() => handleRecommendationClick("plants")}>Plants</div>
+          <div onClick={() => handleRecommendationClick("dog")}>Dog</div>
+        </div>
       )}
     </div>
   );

@@ -1,9 +1,17 @@
-import React from 'react'
+import React from "react";
+import "./Loader.css";
 
 const Loader = () => {
   return (
-    <div>Loader</div>
-  )
-}
+    <div className="loader-container">
+      <img
+        src={require("../../assets/loader-icon.png")}
+        alt=""
+        className="loader-icon"
+      />
+      <p>Loading awesome content for you</p>
+    </div>
+  );
+};
 
-export default Loader
+export default Loader;

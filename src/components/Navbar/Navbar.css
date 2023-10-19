@@ -21,19 +21,17 @@
     gap:15px;
 }
 
-  /* another css */
+  /* --------------------------------another css------------------------------- */
 
 
   .active{
-    background-color: #1d4ed8;
-}
+    /* background-color: #1d4ed8; */
+  }
 
 nav {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: white;
-    color: black;
     position: sticky;
     top: 0;
 
@@ -72,7 +70,7 @@ nav .menu{
     display: none;
     position: absolute;
     right: 0.2rem;
-    top: 1rem;
+    top: 1.35rem;
     flex-direction: column;
     justify-content: space-between;
     width: 2.25rem;
@@ -83,7 +81,7 @@ nav .menu{
     display: none;
     position: absolute;
     right: 2.5rem;
-    top: 1.2rem;
+    top: 1.5rem;
     flex-direction: column;
     justify-content: space-between;
     width: 2.25rem;
@@ -98,8 +96,12 @@ nav .menu span {
     border-radius: 0.2rem;
 }
 
+.search-input-container{
+  position: absolute;
+  left: 31%;
+}
 
-@media (max-width: 480px) {
+@media (max-width: 680px) {
     nav .menu ,.search-icon{
         display: flex;
     }
@@ -112,7 +114,6 @@ nav .menu span {
     nav ul {
         display: none;
         flex-direction: column;
-        /* width: 100%; */
         margin-bottom: 0.25rem;
         align-self: center
     }
@@ -135,10 +136,57 @@ nav .menu span {
         
     }
 
-    .search-input{
-        display:none;
-    }
-    
+    @keyframes slideIn {
+        from {
+          max-height: 0;
+          opacity: 0;
+        }
+        to {
+          max-height: 200px; 
+          opacity: 1;
+        }
+      }
+      
+      @keyframes slideOut {
+        from {
+          max-height: 200px; 
+          opacity: 1;
+        }
+        to {
+          max-height: 0;
+          opacity: 0;
+        }
+      }
+      
+      .search-input-container {
+        max-height: 0;
+        overflow: hidden;
+        position: absolute;
+        top: 1.0rem;
+        /* right: 12rem !important; */
+        width: 150px; 
+        height: 40px; 
+        left:50%;
+        border-radius: 10px; 
+        animation-duration: 0.3s;
+        animation-timing-function: ease;
+      }
+      
+      .search-input-container.active {
+        max-height: 200px; 
+        width: 150px;
+        height: 40px; 
+        border-radius: 10px; 
+        animation-name: slideIn;
+        animation-fill-mode: forwards;
+      }
+      
+      .search-input-container.closed {
+        animation-name: slideOut;
+        animation-fill-mode: forwards;
+      }
+      
+
     .navbar-right-container{
         display:none;
     }
