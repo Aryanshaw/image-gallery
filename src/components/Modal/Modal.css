@@ -150,6 +150,10 @@
     padding-bottom: 5px;
 }
 
+.tag{
+  color:black;
+}
+
 .tags-container{
     background:#ECECEC;
     border-radius: 5px;

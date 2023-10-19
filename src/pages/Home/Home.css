@@ -70,11 +70,15 @@ p{
     margin: 5px;
     cursor: pointer;
     position: relative;
-    border: 10px solid red;
     height: fit-content; 
     border:1px solid rgba(164, 164, 164, 0.557);
     border-radius: 10px;
     box-shadow: 7px 7px 14px rgba(0, 0, 0, 0.1);
+  }
+
+  .pin .dark-mode{
+    background-color:#000000 !important;
+    color:white !important;
   }
 
 .pin.small {

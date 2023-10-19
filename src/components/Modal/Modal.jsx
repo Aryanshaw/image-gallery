@@ -5,9 +5,20 @@ import { CiTwitter, CiInstagram } from "react-icons/ci";
 import { RxCrossCircled, RxShare1, RxInfoCircled } from "react-icons/rx";
 import { useSelector } from "react-redux";
 import { tagSelector } from "../../utils/reducers/FetchCollectionSlice";
+import { darkModeSelector } from "../../utils/reducers/ModeSlice";
+import { saveAs } from "file-saver";
 
 const Modal = ({ onClose, data, modalIndex }) => {
   const tags = useSelector(tagSelector);
+  const isDarkMode = useSelector(darkModeSelector);
+
+  const handleDownload = () => {
+    const imageUrl = data?.urls?.regular;
+
+    if (imageUrl) {
+      saveAs(imageUrl, "image.jpg");
+    }
+  };
 
   return (
     <div className="modal">
@@ -15,7 +26,13 @@ const Modal = ({ onClose, data, modalIndex }) => {
         <div className="modal-close" onClick={onClose}>
           <RxCrossCircled color="white" size={35} />
         </div>
-        <div className="modal-container">
+        <div
+          className="modal-container"
+          style={{
+            backgroundColor: isDarkMode ? "black" : "white",
+            borderRadius: "15px",
+          }}
+        >
           <div className="modal-img-container">
             <div className="modal-img-activities">
               <div className="modal-img-activity">
@@ -28,7 +45,9 @@ const Modal = ({ onClose, data, modalIndex }) => {
               </div>
             </div>
             <img className="modal-img" src={data?.urls?.regular} alt="" />
-            <button className="modal-download-btn">Download</button>
+            <button className="modal-download-btn" onClick={handleDownload}>
+              Download
+            </button>
           </div>
           <div className="modal-photo-info">
             <div style={{ display: "flex", alignItems: "center" }}>
@@ -38,7 +57,12 @@ const Modal = ({ onClose, data, modalIndex }) => {
                 alt=""
               />
               <div className="modal-user-info">
-                <p className="modal-title">{data?.user.name}</p>
+                <p
+                  className="modal-title"
+                  style={{ color: isDarkMode ? "white" : "black" }}
+                >
+                  {data?.user.name}
+                </p>
                 {data?.user.instagram_username && (
                   <p className="modal-username" style={{ marginTop: "-6px" }}>
                     @{data?.user.instagram_username}
@@ -66,7 +90,12 @@ const Modal = ({ onClose, data, modalIndex }) => {
             </div>
             <div className="modal-like-container">
               <GoThumbsup color="#858484" />
-              <p className="modal-likes">{data?.likes}</p>
+              <p
+                className="modal-likes"
+                style={{ color: isDarkMode ? "white" : "black" }}
+              >
+                {data?.likes}
+              </p>
             </div>
           </div>
           <h5 style={{ marginLeft: "10px", marginBottom: "-2px" }}>

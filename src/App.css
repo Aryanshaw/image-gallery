@@ -1,16 +1,16 @@
 :root {
   --background-light: white;
   --text-light: black;
-  --background-dark: #1a1a1a;
+  --background-dark: #232323;
   --text-dark: white;
 }
 
-body {
+.light-mode {
   background-color: var(--background-light);
   color: var(--text-light);
 }
 
-body.dark-mode {
+.dark-mode {
   background-color: var(--background-dark);
   color: var(--text-dark);
 }
