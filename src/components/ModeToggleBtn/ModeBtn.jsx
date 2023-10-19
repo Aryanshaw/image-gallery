@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleDarkMode } from "../../utils/reducers/ModeSlice";
 import Switch from "react-switch";
@@ -9,23 +9,8 @@ const ModeBtn = () => {
   const dispatch = useDispatch();
 
   const toggleMode = () => {
-    const newMode = !isDarkMode;
     dispatch(toggleDarkMode());
-    document.body.classList.toggle("dark-mode", newMode);
-    localStorage.setItem("darkMode", JSON.stringify(newMode));
   };
-
-  useEffect(() => {
-    const savedMode = JSON.parse(localStorage.getItem("darkMode"));
-
-    if (savedMode !== null) {
-      document.body.classList.toggle("dark-mode", savedMode);
-      dispatch(toggleDarkMode());
-    } else {
-      document.body.classList.toggle("light-mode", savedMode);
-      dispatch(toggleDarkMode());
-    }
-  }, [dispatch]);
 
   return (
     <div className="toggle-container">
