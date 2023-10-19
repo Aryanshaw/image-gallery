@@ -101,7 +101,7 @@ nav .menu span {
   left: 31%;
 }
 
-@media (max-width: 680px) {
+@media (max-width: 780px) {
     nav .menu ,.search-icon{
         display: flex;
     }
