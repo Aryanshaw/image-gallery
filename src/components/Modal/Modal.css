@@ -171,7 +171,7 @@
 @media (max-width: 780px) {
   .modal-img{
     max-width: 370px; 
-    max-height: 450px !important; 
+    max-height: 480px !important; 
     width: auto; 
     height: auto;
   }
